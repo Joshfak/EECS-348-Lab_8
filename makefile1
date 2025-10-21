@@ -1,0 +1,31 @@
+main: football_score_possibilities.c temp_conversion.c main.c
+	gcc football_score_possibilities.c temp_conversion.c main.c -o main
+
+TEMP_EXE = temp_converter
+NFL_EXE  = nfl_scores
+
+# Source files
+TEMP_SRC = temperature_conversion.c
+NFL_SRC  = nfl_score_prediction.c
+
+# Default target: build both programs
+all: $(TEMP_EXE) $(NFL_EXE)
+
+# Compile Temperature Conversion
+$(TEMP_EXE): $(TEMP_SRC)
+	$(CC) $(CFLAGS) -o $(TEMP_EXE) $(TEMP_SRC)
+
+# Compile NFL Score Prediction
+$(NFL_EXE): $(NFL_SRC)
+	$(CC) $(CFLAGS) -o $(NFL_EXE) $(NFL_SRC)
+
+# Run both programs
+run_temp:
+	./$(TEMP_EXE)
+
+run_nfl:
+	./$(NFL_EXE)
+
+# Clean up compiled executables
+clean:
+	rm -f $(TEMP_EXE) $(NFL_EXE)
